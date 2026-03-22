@@ -65,12 +65,25 @@ function displayProducts(products) {
 
 }
 
+window.onload = () => {
+    let status = true;
+    let productSection = document.querySelector("#all-products");
 
-
-loadProducts();
-
-// Simulate heavy operation. It could be a complex price calculation.
-for (let i = 0; i < 10000000; i++) {
-    const temp = Math.sqrt(i) * Math.sqrt(i);
+    window.onscroll = () => {
+        if(status) {
+            let position = productSection.getBoundingClientRect().top - (window.screenY + window.innerHeight);
+            if(position <= 0){
+                status = false;
+    
+                loadProducts();
+    
+                // Simulate heavy operation. It could be a complex price calculation.
+                for (let i = 0; i < 10000000; i++) {
+                    const temp = Math.sqrt(i) * Math.sqrt(i);
+                }
+            }
+        }
+    }
 }
+
 
